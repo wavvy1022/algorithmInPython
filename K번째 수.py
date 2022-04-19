@@ -5,7 +5,7 @@ sys.stdin = open("input.txt","rt")
 T= int(input())
 
 #테스크 케이스 수 만큼 for
-for i in range(1, T+1):
+for i in range(T):
     #N s e k 및 배열값 입력
     N,s,e,k = map(int, input().split())
     arr = list(map(int, input().split()))
@@ -16,7 +16,7 @@ for i in range(1, T+1):
     #정렬된 새 배열에서 K번째 요소 추출
     answer = newArr[k-1]
     #출력예제 형식에 맞는 값 print
-    print("#%d %d" %(t+1,newArr[k-1]))
+    print("#%d %d" %(i+1, newArr[k-1]))
 
     
 
