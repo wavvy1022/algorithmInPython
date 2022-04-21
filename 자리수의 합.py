@@ -3,13 +3,10 @@
 # 꼭 작성해서 프로그래밍 하세요.
 
 import sys
-# sys.stdin = open("input.txt","rt")
+sys.stdin = open("input.txt","rt")
 
 n = int(input())
 a = list(map(int, input().split()))
-
-sumNum = 0
-result = 0
 
 #자리수 합산 function
 def digit_sum(num):
@@ -20,14 +17,24 @@ def digit_sum(num):
     # return sumNum
 
     # 다른 풀이
-    sum = 0
-    while num>0:
-        # 10으로 나누었을때의 나머지값을 sum변수에 더함
-        sum+=num%10
-        # 10으로 나눴을때의 몫값을 num변수에 할당
-        # 나머지가 1자리수까지 반복 => 각각 자리수에 대한 합산처리
-        num=num//10
-    return sum
+    # sum = 0
+    # while num>0:
+    #     # 10으로 나누었을때의 나머지값을 sum변수에 더함
+    #     sum+=num%10
+    #     # 10으로 나눴을때의 몫값을 num변수에 할당
+    #     # 나머지가 1자리수까지 반복 => 각각 자리수에 대한 합산처리
+    #     num=num//10
+    # return sum
+
+    # 다른풀이2
+    sum=0
+    # num을 문자열로 변환 후 for문으로 각각의 자릿수 값 합산
+    for i in str(num):
+        sum += int(i)
+    return sum   
+
+sumNum = 0
+result = 0
 
 for x in a:
     #자리수 합산 최대값
