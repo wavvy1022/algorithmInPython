@@ -9,33 +9,61 @@
 # 으로 받게 된다.
 # N 명이 주사위 게임에 참여하였을 때, 가장 많은 상금을 받은 사람의 상금을 출력하는 프로그램
 # 을 작성하시오
-# import sys
-# sys.stdin = open("input.txt","rt")
+import sys
+sys.stdin = open("input.txt","rt")
 
 n = int(input())
 
-result=0
+result=[]
 
-for i in range(1, n+1):
-    arr = list(map(int, input().split()))
+res = 0
 
-    count=0
-    diceVal=0
-    for j in arr:
-        if count<arr.count(j):
-            count=arr.count(j)
-            diceVal=j
+for i in range(n):
 
-    if count==3:
-        a = 10000+(diceVal*1000)
-        result = a
-    elif count==2:
-        b = 1000+(diceVal*100) 
-        if result<b:
-            result = b
-    else:
-        c = max(arr)*100
-        if result<c:
-            result = c  
+    # 풀이 1
 
-print(result) 
+    # arr = list(map(int, input().split()))
+
+    # count=0
+    # diceVal=0
+
+    # for j in arr:
+    #     # for문을 수행하면서 한사이클당 반복된 눈의 횟수를 count변수, 중복된 눈의 값을 diceVal에 할당
+    #     if count<arr.count(j):
+    #         count=arr.count(j)
+    #         diceVal=j
+
+    # # 반복된 눈의 횟수에 따른 계산식에 대한 분기처리
+    # if count==3:
+    #     result.append(10000+(diceVal*1000))
+    # elif count==2:
+    #     result.append(1000+(diceVal*100))
+    # else:
+    #     result.append(max(arr)*100)
+    
+# 모든 결과값(상금값)중 가장 최대값 출력
+# print(max(result)) 
+
+    # 풀이 2
+
+    tmp = input().split()
+    tmp.sort()
+    a, b, c = map(int, tmp)
+    #순서에 유의해서 분기처리하기!!
+    #만약 2개가 같은 케이스를 먼저 작성할 경우 3개 모두가 같더라도
+    #2개가 같은 케이스도 true처리가 되기 때문에 잘못처리될 수 있음!
+    if a==b and b==c:
+        #주사위 눈 3개 모두 같은 경우
+        money = 10000+a*1000
+    elif a==b or a==c:
+        #주사위 눈 2개가 같은 경우
+        money = 1000+(a*100)
+    elif b==c:
+        money = 1000+(b*100)
+    elif a!=b and b!=c:
+        #tmp는 sort가된 상태이므로 가장 뒤에있는 값인 c가 큰값이므로 a를 계산해준다.
+        money= c*100
+
+    if money>res:
+        res=money
+print(res)
