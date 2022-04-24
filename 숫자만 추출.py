@@ -19,3 +19,10 @@ for i in t:
 # 앞자리의 0은 자연수화 하면서 삭제처리 되도록함
 num = int("".join(numArr))
 print(num)
+
+cnt=0
+for i in range(1,num+1):
+    if num%i==0:
+        cnt+=1
+
+print(cnt)
