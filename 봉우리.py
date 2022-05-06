@@ -16,17 +16,15 @@ for i in range(0,len(a)):
 # 봉우리 개수 변수
 cnt = 0
 
+# x축 y축   
+dx=[-1,0,1,0]
+dy=[0,1,0,-1]
+
 # 0으로 초기화 된 영역을 제외한 2차원 배열 2중 for문
 for i in range(1,n+1):
     for j in range(1,n+1):
-        # 요소의 상,하,좌,우 영역 배열에 append후 해당 요소가 배열에서 최대값일 경우
-        # cnt +1처리
-        arr = []
-        arr.append(a[i-1][j])
-        arr.append(a[i+1][j])
-        arr.append(a[i][j-1])
-        arr.append(a[i][j+1])
-        # arr최대값과 봉우리 판별요소 비교해서 arr최대값보다 클 경우 카운트 추가(같은case 제외!)
-        if max(arr)<a[i][j]:
+        # python all()함수=> 함수안에 조건이 모두 참일때만 true로 반환
+        # 상하좌우 4방향 탐색
+        if all(a[i][j]>a[i+dx[k]][j+dy[k]] for k in range(4)):
             cnt += 1
 print(cnt)
